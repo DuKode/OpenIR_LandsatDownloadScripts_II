@@ -57,8 +57,8 @@ createTMSforBandWithFileName(){
 		#fi 
 		# exit 0
 		
-		rm "$BAND"
-		rm  "$BANDFILE"
+		# rm "$BAND"
+	    rm  "$BANDFILE"
 	fi
 }
 
@@ -194,7 +194,7 @@ args=("$@")
 NUM1=$#
 NUM2=2
 
-maxZoom=14
+maxZoom=7
 minZoom=5
 
  n=-1
