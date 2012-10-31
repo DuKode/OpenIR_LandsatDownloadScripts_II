@@ -218,11 +218,12 @@ echo "\n "
 # echo "453"
 
 echo "543"
-createTMSLayerWithDirectoriesAndDestinationAndBandCombinations "543" "543"
+
 # echo "754"
 #ok
 createTMSLayerWithDirectoriesAndDestinationAndBandCombinations "321" "321"
 createTMSLayerWithDirectoriesAndDestinationAndBandCombinations "432" "432"
+createTMSLayerWithDirectoriesAndDestinationAndBandCombinations "543" "543"
 createTMSLayerWithDirectoriesAndDestinationAndBandCombinations "453" "453"
 createTMSLayerWithDirectoriesAndDestinationAndBandCombinations "754" "754"
 
