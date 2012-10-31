@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+                                        <html xmlns="http://www.w3.org/1999/xhtml"
+                                        <head>
+                                        <title>754.tif</title>
+                                        
+					<link rel="stylesheet" href="http://openIR.media.mit.edu/html_src/CloudMade-Leaflet-v0.3.1/dist/leaflet.css" />
+					<!--[if lte IE 8]>
+					<link rel="stylesheet" href="http://openIR.media.mit.edu/html_src/CloudMade-Leaflet-v0.3.1/dist/leaflet.ie.css" />
+					<![endif]-->                                        
+					<script type="text/javascript" src="http://openIR.media.mit.edu/html_src/CloudMade-Leaflet-v0.3.1/dist/leaflet.js"></script>
+
+                                        
+                                        
+                                        
+                                        <script type="text/javascript">
+                                        var map;
+                                        var mapMinZoom = 7;
+                                        var mapMaxZoom = 12;
+                                        
+                                        
+                                        function initmap(){
+                                            // set up the map
+                                            map = new L.Map('map');
+
+                                            
+                                            // create OSM tile layer with correct attribution
+                                            var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+                                            var osmAttrib='Map data Â© OpenStreetMap contributors';
+                                            var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 32, attribution: osmAttrib});
+
+                                            // start the map in specified location
+                                            map.setView(new L.LatLng(-6.75669240286, 106.14514625),9);
+                                            map.addLayer(osm);
+
+
+                                            
+                                            // add 321  layer
+
+                                            var layer321URL = '321/{z}/{x}/{y}.png';
+                                            var layer321 = new L.TileLayer(layer321URL, {maxZoom: 18, scheme:'tms'});
+                                            map.addLayer(layer321);
+
+
+                                            
+                                            // add 432  layer
+
+                                            var layer432URL = '432/{z}/{x}/{y}.png';
+                                            var layer432 = new L.TileLayer(layer432URL, {maxZoom: 18, scheme:'tms'});
+                                            map.addLayer(layer432);
+
+
+                                            
+                                            // add 453  layer
+
+                                            var layer453URL = '453/{z}/{x}/{y}.png';
+                                            var layer453 = new L.TileLayer(layer453URL, {maxZoom: 18, scheme:'tms'});
+                                            map.addLayer(layer453);
+
+
+                                            
+                                            // add 543  layer
+
+                                            var layer543URL = '543/{z}/{x}/{y}.png';
+                                            var layer543 = new L.TileLayer(layer543URL, {maxZoom: 18, scheme:'tms'});
+                                            map.addLayer(layer543);
+
+
+                                            
+                                            // add 754  layer
+
+                                            var layer754URL = '754/{z}/{x}/{y}.png';
+                                            var layer754 = new L.TileLayer(layer754URL, {maxZoom: 18, scheme:'tms'});
+                                            map.addLayer(layer754);
+
+
+                                            
+                                            //create an object that holds the base layers
+
+                                            var baselayers= {
+                                                "Open Street Maps": osm
+                                        
+                                                ,"True Color": layer321
+
+                                        
+                                                ,"Vegetation": layer432
+
+                                        
+                                                ,"Soil": layer453
+
+                                        
+                                                ,"Urban": layer543
+
+                                        
+                                                ,"Water": layer754
+
+                                        
+                                            };
+    
+                                            var layersControl = new L.Control.Layers(baselayers);
+                                            map.addControl(layersControl);
+
+                                        
+                                            }
+                                        
+                                        </script>
+                                </head>
+ 
+ 
+                                <body onload="initmap()">
+
+                                        <div id="map" style="height: 1000px"></div>
+         
+                                </body>
+                                </html>

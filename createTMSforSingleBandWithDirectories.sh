@@ -221,42 +221,41 @@ minZoom=5
   		for i in ${TILEFILESARRAY[@]}; do
   			if [[ "$i" == *B10* ]] || [[  "$i" == *10.tif* ]] ||  [[ "$i" == *01.tif* ]] || [[ "$i" == *nn1.gz* ]] || [[ "$i" == *01.gz* ]]; then
   				createTMSforBandWithFileName $i 
-  			fi
+  			
   			# B20
-  			if [[ "$i" == *B20* ]] || [[  "$i" == *20.tif* ]] ||  [[ "$i" == *02.tif* ]] || [[ "$i" == *nn2.gz* ]] || [[ "$i" == *02.gz* ]]; then
+  			elif [[ "$i" == *B20* ]] || [[  "$i" == *20.tif* ]] ||  [[ "$i" == *02.tif* ]] || [[ "$i" == *nn2.gz* ]] || [[ "$i" == *02.gz* ]]; then
   				createTMSforBandWithFileName $i 
-  			fi
+  			
   			#B30
-  			if [[ "$i" == *B30* ]] || [[  "$i" == *30.tif* ]] ||  [[ "$i" == *03.tif* ]] || [[ "$i" == *nn3.gz* ]] || [[ "$i" == *03.gz* ]]; then
+  			elif [[ "$i" == *B30* ]] || [[  "$i" == *30.tif* ]] ||  [[ "$i" == *03.tif* ]] || [[ "$i" == *nn3.gz* ]] || [[ "$i" == *03.gz* ]]; then
   				createTMSforBandWithFileName $i 
-  			fi
+  			
   			#B40
-  			if [[ "$i" == *B40* ]] || [[  "$i" == *40.tif* ]] ||  [[ "$i" == *04.tif* ]] || [[ "$i" == *nn4.gz* ]] || [[ "$i" == *04.gz* ]]; then
+  			elif [[ "$i" == *B40* ]] || [[  "$i" == *40.tif* ]] ||  [[ "$i" == *04.tif* ]] || [[ "$i" == *nn4.gz* ]] || [[ "$i" == *04.gz* ]]; then
   				createTMSforBandWithFileName $i 
-  			fi
+  		
   			
   			#B50
-  			if [[ "$i" == *B50* ]] || [[  "$i" == *50.tif* ]] ||  [[ "$i" == *05.tif* ]] || [[ "$i" == *nn5.gz* ]] || [[ "$i" == *05.gz* ]]; then
+  			elif [[ "$i" == *B50* ]] || [[  "$i" == *50.tif* ]] ||  [[ "$i" == *05.tif* ]] || [[ "$i" == *nn5.gz* ]] || [[ "$i" == *05.gz* ]]; then
   				createTMSforBandWithFileName $i 
-  			fi
   			
   			#B60
-  			# if [[ "$i" == *B60* ]] || [[  "$i" == *60.tif* ]] ||  [[ "$i" == *06.tif* ]] || [[ "$i" == *nn6.gz* ]] || [[ "$i" == *06.gz* ]]; then
+  			# elif [[ "$i" == *B60* ]] || [[  "$i" == *60.tif* ]] ||  [[ "$i" == *06.tif* ]] || [[ "$i" == *nn6.gz* ]] || [[ "$i" == *06.gz* ]]; then
   			# 	createTMSforBandWithFileName $i 
-  			# fi
+  			# 
   			
   			# #B61
-  			# 		if [ "$i" == *B61* ] || [ "$i" == *61.tif* ]; then
+  			# 		elif [ "$i" == *B61* ] || [ "$i" == *61.tif* ]; then
   			# 			createTMSforBandWithFileName $i 
-  			# 		fi
+  			# 		
   			# 		
   			# 		#B62
-  			# 		if [ "$i" == *B62* ] || [ "$i" == *62.tif* ]; then
+  			# 		elif [ "$i" == *B62* ] || [ "$i" == *62.tif* ]; then
   			# 			createTMSforBandWithFileName $i 
-  			# 		fi
+  			# 		
   			
   			#B10
-  			if [[ "$i" == *B70* ]] || [[  "$i" == *70.tif* ]] ||  [[ "$i" == *07.tif* ]] || [[ "$i" == *nn7.gz* ]] || [[ "$i" == *07.gz* ]]; then
+  			elif [[ "$i" == *B70* ]] || [[  "$i" == *70.tif* ]] ||  [[ "$i" == *07.tif* ]] || [[ "$i" == *nn7.gz* ]] || [[ "$i" == *07.gz* ]]; then
   				createTMSforBandWithFileName $i 
   					
   			fi
