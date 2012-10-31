@@ -89,30 +89,23 @@ for directory in ${Directories[@]}; do
 					if [[ "$tiledirectory" == *B10* ]]  || [[ "$tiledirectory" == *nn10 ]]; then 
 						echo "tiled directory10 "
 						band10=$tiledirectory
-					fi	
-				
-					if [[ "$tiledirectory" == *B20* ]] || [[ "$tiledirectory" == *nn20* ]]; then 
+					elif [[ "$tiledirectory" == *B20* ]] || [[ "$tiledirectory" == *nn20* ]]; then 
 						echo "tiled directory20"
 						 band20="$tiledirectory"
-					fi	
-					if [[ "$tiledirectory" == *B30* ]] || [[ "$tiledirectory" == *nn30* ]]; then 
+					elif [[ "$tiledirectory" == *B30* ]] || [[ "$tiledirectory" == *nn30* ]]; then 
 						echo "tiled directory30"
 						band30="$tiledirectory"
-					fi	
-					if [[ "$tiledirectory" == *B40* ]] || [[ "$tiledirectory" == *nn40* ]]; then 
+					elif [[ "$tiledirectory" == *B40* ]] || [[ "$tiledirectory" == *nn40* ]]; then 
 						echo "tiled directory40"
 						band40="$tiledirectory"
-					fi
-					if [[ "$tiledirectory" == *B50* ]] || [[ "$tiledirectory" == *nn50* ]]; then 
+					elif [[ "$tiledirectory" == *B50* ]] || [[ "$tiledirectory" == *nn50* ]]; then 
 						echo "tiled directory50"
 						band50="$tiledirectory"
-					fi
-					if [[ "$tiledirectory" == *B60* ]] || [[ "$tiledirectory" == *nn60* ]]; then 
+					elif [[ "$tiledirectory" == *B60* ]] || [[ "$tiledirectory" == *nn60* ]]; then 
 						echo "tiled directory60"
 						band60="$tiledirectory"
-					fi
-					if [[ "$tiledirectory" == *B70* ]] || [[ "$tiledirectory" == *nn70* ]]; then 
-						echo "tiled director70"
+					elif [[ "$tiledirectory" == *B70* ]] || [[ "$tiledirectory" == *nn70* ]]; then 
+						echo "tiled directory70"
 						band70="$tiledirectory"
 					fi
 				fi
@@ -127,6 +120,7 @@ for directory in ${Directories[@]}; do
 					elif [[ $bandCombination == "543" ]]; then 
 						bands=($band50 $band40 $band30);
 					elif [[ $bandCombination == "754" ]]; then 
+						echo "############################754"
 						bands=($band70 $band50 $band40);
 					fi
 			echo "bands array = ${bands[@]}" 
@@ -141,6 +135,7 @@ for directory in ${Directories[@]}; do
 				 echo "directory $i exists" 
 				# echo "*"
 				#start tiles rows and columns. 
+				echo "Rows = $(pow 2 $i)"
 				 for (( r=0; r <= $(pow 2 $i); r++ )); do 
 					# echo "*"
 					if [ -d "${bands[0]}/$i/$r" ]; then 
@@ -153,9 +148,9 @@ for directory in ${Directories[@]}; do
 						mkdir $DestinationDirectory/$i/
 						mkdir $DestinationDirectory/$i/$r
 					fi 
-
+					# echo "Columns = $(pow 2 $i)"
 					for (( c=0; c <=$(pow 2 $i); c++ )); do 
-						# echo "columns "echo "*"
+						# echo  "$r Rows = $(pow 2 $i) ----- $c / Columns = $(pow 2 $i) \c"
 						if [ -f "${bands[0]}/$i/$r/$c.png" ]; then 	# if file exists on destination merge and composite
 							echo "directory $i processing" 
 							# echo "column file $c exists" 
@@ -163,14 +158,14 @@ for directory in ${Directories[@]}; do
 							if [ -f "$DestinationDirectory/$i/$r/$c.png" ]; then 
 								echo "file exists and it is combined *" 
 								echo "directory $i processing" 
-								convert -monitor -channel RGB -auto-level "${bands[0]}/$i/$r/$c.png" "${bands[1]}/$i/$r/$c.png" "${bands[2]}/$i/$r/$c.png" -set colorspace RGB -combine -set colorspace sRGB -transparent black  "c.png"
+								convert  -channel RGB -auto-level "${bands[0]}/$i/$r/$c.png" "${bands[1]}/$i/$r/$c.png" "${bands[2]}/$i/$r/$c.png" -set colorspace RGB -combine -set colorspace sRGB -transparent black  "c.png"
 								convert c.png "$DestinationDirectory/$i/$r/$c.png" -composite "$DestinationDirectory/$i/$r/$c.png" 
-								rm "c.png"
+								# rm "c.png"
 
 						 	else 	#else copy file to directory
 								echo "directory $i does not exist and it is copied"
 						 	  	# cp "${bands[0]}/$i/$r/$c.png" "$DestinationDirectory/$i/$r/c.png"
-							    convert  -monitor -channel RGB -auto-level "${bands[0]}/$i/$r/$c.png" "${bands[1]}/$i/$r/$c.png" "${bands[2]}/$i/$r/$c.png" -set colorspace RGB -combine -set colorspace sRGB -transparent black "$DestinationDirectory/$i/$r/$c.png"
+							    convert  -channel RGB -auto-level "${bands[0]}/$i/$r/$c.png" "${bands[1]}/$i/$r/$c.png" "${bands[2]}/$i/$r/$c.png" -set colorspace RGB -combine -set colorspace sRGB -transparent black "$DestinationDirectory/$i/$r/$c.png"
 							fi
 						fi
 					done 
@@ -205,9 +200,15 @@ minZoom=5
 # 
 echo "\n "
 #createTMSLayerWithDirectoriesAndDestinationAndBandCombinations ${args[@]} "321" "321"
-createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "321" "321"
-createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "432" "432"
-createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "453" "453"
-createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "543" "543"
+#createTMSLayerWithDirectoriesAndDestinationAndBandCombinations "321" "321";
+# echo "432"
+# createTMSLayerWithDirectoriesAndDestinationAndBandCombinations "432" "432"
+# echo "453"
+# createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "453" "453"
+# echo "453"
+# createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "543" "543"
 createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "754" "754"
+
+echo "\n"
+exit 0 
 

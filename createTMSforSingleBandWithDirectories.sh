@@ -187,7 +187,9 @@ done
 
 
 }
+#################################################################################
 
+#################################################################################
 
 #################################################################################
 args=("$@")
@@ -239,9 +241,9 @@ minZoom=5
   			fi
   			
   			#B60
-  			if [[ "$i" == *B60* ]] || [[  "$i" == *60.tif* ]] ||  [[ "$i" == *06.tif* ]] || [[ "$i" == *nn6.gz* ]] || [[ "$i" == *06.gz* ]]; then
-  				createTMSforBandWithFileName $i 
-  			fi
+  			# if [[ "$i" == *B60* ]] || [[  "$i" == *60.tif* ]] ||  [[ "$i" == *06.tif* ]] || [[ "$i" == *nn6.gz* ]] || [[ "$i" == *06.gz* ]]; then
+  			# 	createTMSforBandWithFileName $i 
+  			# fi
   			
   			# #B61
   			# 		if [ "$i" == *B61* ] || [ "$i" == *61.tif* ]; then
@@ -254,16 +256,16 @@ minZoom=5
   			# 		fi
   			
   			#B10
-  			if [[ "$i" == *B70* ]] || [[  "$i" == *10.tif* ]] ||  [[ "$i" == *07.tif* ]] || [[ "$i" == *nn7.gz* ]] || [[ "$i" == *07.gz* ]]; then
+  			if [[ "$i" == *B70* ]] || [[  "$i" == *70.tif* ]] ||  [[ "$i" == *07.tif* ]] || [[ "$i" == *nn7.gz* ]] || [[ "$i" == *07.gz* ]]; then
   				createTMSforBandWithFileName $i 
   					
   			fi
   			
   			#B80
-  			if [[ "$i" == *B80* ]] || [[  "$i" == *80.tif* ]] ||  [[ "$i" == *08.tif* ]] || [[ "$i" == *nn8.gz* ]] || [[ "$i" == *08.gz* ]] ; then
-  				createTMSforBandWithFileName $i 
-  					
-  			fi
+  			# if [[ "$i" == *B80* ]] || [[  "$i" == *80.tif* ]] ||  [[ "$i" == *08.tif* ]] || [[ "$i" == *nn8.gz* ]] || [[ "$i" == *08.gz* ]] ; then
+  			# 	createTMSforBandWithFileName $i 
+  			# 		
+  			# fi
   		done
   	fi
 done
@@ -272,108 +274,3 @@ done
   echo "#### "
   echo "done"
   exit 0 
-
-
-######################################## 321 
-
-#layer name ($BAND10DIR)
-#    |
-#level of detail (0-32)
-#    |
-#tile rows ()
-#    |
-# image for each columns 
-############
-# cd $BAND_DIR
-# BANDCOMBARRAY[0]=$BAND30DIR
-# BANDCOMBARRAY[1]=$BAND20DIR
-# BANDCOMBARRAY[2]=$BAND10DIR
-# DESTINATIONDIR="321"
-# 	
-# band10=""
-# band20=""
-# band30=""
-# 
-# echo "\n "
-# #createTMSLayerWithDirectoriesAndDestinationAndBandCombinations ${args[@]} "321" "321"
-# createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "321" "321"
-# createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "432" "432"
-# createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "453" "453"
-# createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "543" "543"
-# createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "754" "754"
-# 
-
-# 
-# for directory in ${args[@]}; do
-# 	if [ -d $directory ]; then 
-# 		
-# 		FILES=$directory/**
-# 		TILEFILESARRAY=(`echo $FILES`)
-# 		# echo "*******\n$FILES\n"
-# 	 	for tiledirectory in ${TILEFILESARRAY[@]}
-# 		do
-# 		echo "forloop "
-# 				if [ -d $tiledirectory ]; then 
-# 					echo "isDirectory  "
-# 					if [[ "$tiledirectory" == *B10* ]]; then 
-# 						echo "tiled directory10 "
-# 						band10=$tiledirectory
-# 					fi	
-# 				
-# 					if [[ "$tiledirectory" == *B20* ]]; then 
-# 						echo "tiled directory20"
-# 						 band20="$tiledirectory"
-# 					fi	
-# 					if [[ "$tiledirectory" == *B30* ]]; then 
-# 						echo "tiled directory30"
-# 						band30="$tiledirectory"
-# 					fi	
-# 				fi
-# 			band321=($band30, $band20, $band10)
-# 		done
-# 	# for band in ${band321[@]}; do
-# 		for (( i=$minZoom; i <=$maxZoom; i++ )); do #ZOOM - LEVEL OF DETAIL  #n 	n>2 × n>2 tiles 	2>2n tiles 
-# 			#n = level of detail source http://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#X_and_Y 
-# 			########
-# 			# echo "$band10/$i"
-# 			if [ -d "$band10/$i" ]; then 
-# 				# echo "directory $i exists" 
-# 				echo "*"
-# 				#start tiles rows and columns. 
-# 				 for (( r=0; r <= $(pow 2 $i); r++ )); do 
-# 					echo "*"
-# 					if [ -d "$band10/$i/$r" ]; then 
-# 					    echo "row directory $r exists" 
-# 						echo "*"
-# 							mkdir $DESTINATIONDIR
-# 							mkdir $DESTINATIONDIR/$i/
-# 							mkdir $DESTINATIONDIR/$i/$r
-# 					fi 
-# 
-# 					for (( c=0; c <=$(pow 2 $i); c++ )); do 
-# 						echo "*"
-# 						if [ -f "$band10/$i/$r/$c.png" ]; then 	# if file exists on destination merge and composite
-# 							echo "column file $c exists" 
-# 							echo "*"
-# 							if [ -f "$DESTINATIONDIR/$i/$r/$c.png" ]; then 
-# 								echo "*" 
-# 								
-# 								convert -monitor -channel RGB -auto-level "$band30/$i/$r/$c.png" "$band20/$i/$r/$c.png" "$band10/$i/$r/$c.png" -set colorspace sRGB -combine -set colorspace sRGB -transparent black  "c.png"
-# 								convert c.png "$DESTINATIONDIR/$i/$r/$c.png" -composite "$DESTINATIONDIR/$i/$r/$c.png" 
-# 								rm "c.png"
-# 							# #else copy file to directory
-# 						 	else
-# 								echo "*"
-# 						 	  	cp "$band10/$i/$r/$c.png" "$DESTINATIONDIR/$i/$r/c.png"
-# 							    	convert  -monitor -channel RGB -auto-level "$band30/$i/$r/$c.png" "$band20/$i/$r/$c.png" "$band10/$i/$r/$c.png" -set colorspace sRGB -combine -set colorspace sRGB -transparent black "$DESTINATIONDIR/$i/$r/$c.png"
-# 							fi
-# 						fi
-# 					done 
-# 					#*******
-# 				done 
-# 			fi 
-# 		done
-# 	fi
-# done	
-# #cd .. 
-# ############
