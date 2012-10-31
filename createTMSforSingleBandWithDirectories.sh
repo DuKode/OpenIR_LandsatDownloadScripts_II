@@ -28,13 +28,16 @@ createTMSforBandWithFileName(){
 	BAND=$1
 	# CHECK IF FILE IS ZIPPED AND IF UNZIP 
 	if [[ $BAND == *.gz* ]]; then
+		echo "unzipping file:\n $BAND"
 		gunzip -d -f $BAND
+		echo "done"
+		
 		#$(echo $BAND10|sed 's/.gz/ /g')
-		BANDZIP=$BAND
-		$BAND=$(echo $BAND|sed 's/.gz/ /g')
+		# BANDZIP=$(echo $BAND )
+		BAND=$(echo $BAND|sed 's/.gz//	')
+		echo "file is unzipped:\n $BAND"
 	fi
 	echo $BAND
-
 	if [ -f $BAND ]; then 
 		newname=`echo "$BAND"| sed 's/\.TIF$//' | sed 's/\.tif$//'`
 		echo "newname = $newname" 
@@ -53,6 +56,7 @@ createTMSforBandWithFileName(){
 		python /Library/Frameworks/GDAL.framework/Versions/1.9/Programs/gdal2tiles.py --srcnodata="0,0,0" -z "$minZoom-$maxZoom" "$BANDFILE" "$BANDDIR"
 		#fi 
 		# exit 0
+		
 		rm "$BAND"
 		rm  "$BANDFILE"
 	fi
@@ -202,16 +206,16 @@ minZoom=5
  DIRS="$n"
  echo $DIRS
 
- echo "hello" 
+ # echo "hello" 
   ######################################
   for d in ${args[@]}; do
   	echo "$d in arg"
   	if [ -d $d ]; then
-  		echo "$d in directory" 
+  		# echo "$d in directory" 
   		FILES=$d/*
   		TILEFILESARRAY=(`echo $FILES`)
-  		echo "*******\n$FILES\n"
-  		RESULT="found"
+  		# echo "*******\n$FILES\n"
+  		# RESULT="found"
   		for i in ${TILEFILESARRAY[@]}; do
   			if [[ "$i" == *B10* ]] || [[  "$i" == *10.tif* ]] ||  [[ "$i" == *01.tif* ]] || [[ "$i" == *nn1.gz* ]] || [[ "$i" == *01.gz* ]]; then
   				createTMSforBandWithFileName $i 
@@ -262,11 +266,12 @@ minZoom=5
   			fi
   		done
   	fi
-  done
+done
+
   
   echo "#### "
-  echo " "
-
+  echo "done"
+  exit 0 
 
 
 ######################################## 321 
@@ -288,15 +293,15 @@ minZoom=5
 # band10=""
 # band20=""
 # band30=""
-
-echo "\n "
-#createTMSLayerWithDirectoriesAndDestinationAndBandCombinations ${args[@]} "321" "321"
-createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "321" "321"
-createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "432" "432"
-createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "453" "453"
-createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "543" "543"
-createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "754" "754"
-
+# 
+# echo "\n "
+# #createTMSLayerWithDirectoriesAndDestinationAndBandCombinations ${args[@]} "321" "321"
+# createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "321" "321"
+# createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "432" "432"
+# createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "453" "453"
+# createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "543" "543"
+# createTMSLayerWithDirectoriesAndDestinationAndBandCombinations  "754" "754"
+# 
 
 # 
 # for directory in ${args[@]}; do
