@@ -109,7 +109,7 @@ until [ "$selection" = "0" ]; do
 			echo "Pending statement for the validity of the entry... TO DO"
 			SELECTEDINDEX="$keypress"
 			echo "\nKEYPRESS = $keypress"
-		TILEDOWNLOADPATH="ftp://ftp.glcf.umd.edu/glcf/Landsat/WRS2/p"$TILEPATH"/r"$TILEROW"/${TILEFILESARRAY[SELECTEDINDEX]}/*"
+			TILEDOWNLOADPATH="ftp://ftp.glcf.umd.edu/glcf/Landsat/WRS2/p"$TILEPATH"/r"$TILEROW"/${TILEFILESARRAY[SELECTEDINDEX]}/*"
 			
 			#elaborate on code to check if directory is valid.
 			#wget ftp://ftp.glcf.umd.edu/glcf/Landsat/WRS2/p020/r032/p020r032_7dx20010821.ETM-GLS2000/* && echo exists || echo not exist
@@ -203,5 +203,5 @@ else
 		fi
 	fi
 fi
-	rm $TEMPDIR/* 
-	rm -rf -- $TEMPDIR
+	# rm $TEMPDIR/* 
+	# rm -rf -- $TEMPDIR

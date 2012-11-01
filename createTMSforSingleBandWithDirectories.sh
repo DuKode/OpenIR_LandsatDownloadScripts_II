@@ -45,14 +45,14 @@ createTMSforBandWithFileName(){
 		BANDFILE="$newname.alpha.TIF"
 		BANDDIR="$newname"
 		#echo "$BAND10 exists!"
-		gdalinfo $BAND
+		# gdalinfo $BAND
 		# if [[ "$BAND" == *nn10* ]]; then 
 		
 		gdalwarp -dstalpha -srcnodata "0 0 0" -dstnodata "0 0 0" -co "TILED=YES" "$BAND" "$BANDFILE"
 		# fi
 		#gdalinfo $BANDFILE
 		#if [ -f "$BAND" ]; then
-		echo "ECHO $BANDFILE"  
+		# echo "ECHO $BANDFILE"  
 		python /Library/Frameworks/GDAL.framework/Versions/1.9/Programs/gdal2tiles.py --srcnodata="0,0,0" -z "$minZoom-$maxZoom" "$BANDFILE" "$BANDDIR"
 		#fi 
 		# exit 0
@@ -199,7 +199,7 @@ NUM2=2
 maxZoom=7
 minZoom=5
 
- n=-1
+n=-1
  for i in ${args[@]}; do
  	if [ -d $i ]; then 
  	 	echo "["."$(( n += 1 ))"."]" " $i"		
@@ -219,24 +219,24 @@ minZoom=5
   		# echo "*******\n$FILES\n"
   		# RESULT="found"
   		for i in ${TILEFILESARRAY[@]}; do
-  			if [[ "$i" == *B10* ]] || [[  "$i" == *10.tif* ]] ||  [[ "$i" == *01.tif* ]] || [[ "$i" == *nn1.gz* ]] || [[ "$i" == *01.gz* ]]; then
+  			if [[ "$i" == *B10* ]] || [[  "$i" == *10.tif* ]] ||  [[ "$i" == *01.tif* ]] || [[ "$i" == *nn1.tif* ]] || [[ "$i" == *01.gz* ]]; then
   				createTMSforBandWithFileName $i 
   			
   			# B20
-  			elif [[ "$i" == *B20* ]] || [[  "$i" == *20.tif* ]] ||  [[ "$i" == *02.tif* ]] || [[ "$i" == *nn2.gz* ]] || [[ "$i" == *02.gz* ]]; then
+  			elif [[ "$i" == *B20* ]] || [[  "$i" == *20.tif* ]] ||  [[ "$i" == *02.tif* ]] || [[ "$i" == *nn2.tif* ]] || [[ "$i" == *02.gz* ]]; then
   				createTMSforBandWithFileName $i 
   			
   			#B30
-  			elif [[ "$i" == *B30* ]] || [[  "$i" == *30.tif* ]] ||  [[ "$i" == *03.tif* ]] || [[ "$i" == *nn3.gz* ]] || [[ "$i" == *03.gz* ]]; then
+  			elif [[ "$i" == *B30* ]] || [[  "$i" == *30.tif* ]] ||  [[ "$i" == *03.tif* ]] || [[ "$i" == *nn3.tif* ]] || [[ "$i" == *03.gz* ]]; then
   				createTMSforBandWithFileName $i 
   			
   			#B40
-  			elif [[ "$i" == *B40* ]] || [[  "$i" == *40.tif* ]] ||  [[ "$i" == *04.tif* ]] || [[ "$i" == *nn4.gz* ]] || [[ "$i" == *04.gz* ]]; then
+  			elif [[ "$i" == *B40* ]] || [[  "$i" == *40.tif* ]] ||  [[ "$i" == *04.tif* ]] || [[ "$i" == *nn4.tif* ]] || [[ "$i" == *04.gz* ]]; then
   				createTMSforBandWithFileName $i 
   		
   			
   			#B50
-  			elif [[ "$i" == *B50* ]] || [[  "$i" == *50.tif* ]] ||  [[ "$i" == *05.tif* ]] || [[ "$i" == *nn5.gz* ]] || [[ "$i" == *05.gz* ]]; then
+  			elif [[ "$i" == *B50* ]] || [[  "$i" == *50.tif* ]] ||  [[ "$i" == *05.tif* ]] || [[ "$i" == *nn5.tif* ]] || [[ "$i" == *05.gz* ]]; then
   				createTMSforBandWithFileName $i 
   			
   			#B60
@@ -255,7 +255,7 @@ minZoom=5
   			# 		
   			
   			#B10
-  			elif [[ "$i" == *B70* ]] || [[  "$i" == *70.tif* ]] ||  [[ "$i" == *07.tif* ]] || [[ "$i" == *nn7.gz* ]] || [[ "$i" == *07.gz* ]]; then
+  			elif [[ "$i" == *B70* ]] || [[  "$i" == *70.tif* ]] ||  [[ "$i" == *07.tif* ]] || [[ "$i" == *nn7.tif* ]] || [[ "$i" == *07.gz* ]]; then
   				createTMSforBandWithFileName $i 
   					
   			fi

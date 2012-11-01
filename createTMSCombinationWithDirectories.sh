@@ -86,25 +86,26 @@ for directory in ${Directories[@]}; do
 				if [ -d $tiledirectory ]; then 
 					# echo "tiledirectory = $tiledirectory"
 					#assign the tms bands directories to the variables. 
-					if [[ "$tiledirectory" == *B10* ]]  || [[ "$tiledirectory" == *nn10* ]]; then 
+					############# GLS2005 ############# || #### EarthSat-Orthorectified ### || ################# USGS ######## || ############# GLS2000 ###########
+					if [[ "$tiledirectory" == *B10* ]]  || [[ "$tiledirectory" == *nn10* ]] || [[ "$tiledirectory" == *nn1* ]] || [[ "$tiledirectory" == *_10* ]]; then 
 						# echo "tiled directory10 "
 						band10="$tiledirectory"
-					elif [[ "$tiledirectory" == *B20* ]] || [[ "$tiledirectory" == *nn20* ]]; then 
+					elif [[ "$tiledirectory" == *B20* ]] || [[ "$tiledirectory" == *nn20* ]] || [[ "$tiledirectory" == *nn2* ]] || [[ "$tiledirectory" == *_20* ]]; then 
 						# echo "tiled directory20"
 						 band20="$tiledirectory"
-					elif [[ "$tiledirectory" == *B30* ]] || [[ "$tiledirectory" == *nn30* ]]; then 
+					elif [[ "$tiledirectory" == *B30* ]] || [[ "$tiledirectory" == *nn30* ]] || [[ "$tiledirectory" == *nn3* ]] || [[ "$tiledirectory" == *_30* ]]; then 
 						# echo "tiled directory30"
 						band30="$tiledirectory"
-					elif [[ "$tiledirectory" == *B40* ]] || [[ "$tiledirectory" == *nn40* ]]; then 
+					elif [[ "$tiledirectory" == *B40* ]] || [[ "$tiledirectory" == *nn40* ]] || [[ "$tiledirectory" == *nn4* ]] || [[ "$tiledirectory" == *_40* ]]; then 
 						# echo "tiled directory40"
 						band40="$tiledirectory"
-					elif [[ "$tiledirectory" == *B50* ]] || [[ "$tiledirectory" == *nn50* ]]; then 
+					elif [[ "$tiledirectory" == *B50* ]] || [[ "$tiledirectory" == *nn50* ]] || [[ "$tiledirectory" == *nn5* ]] || [[ "$tiledirectory" == *_50* ]]; then 
 						# echo "tiled directory50"
 						band50="$tiledirectory"
-					elif [[ "$tiledirectory" == *B60* ]] || [[ "$tiledirectory" == *nn60* ]]; then 
+					elif [[ "$tiledirectory" == *B60* ]] || [[ "$tiledirectory" == *nn60* ]] || [[ "$tiledirectory" == *nn6* ]] || [[ "$tiledirectory" == *_60* ]]; then 
 						# echo "tiled directory60"
 						band60="$tiledirectory"
-					elif [[ "$tiledirectory" == *B70* ]] || [[ "$tiledirectory" == *nn70* ]]; then 
+					elif [[ "$tiledirectory" == *B70* ]] || [[ "$tiledirectory" == *nn70* ]] || [[ "$tiledirectory" == *nn7* ]] || [[ "$tiledirectory" == *_70* ]]; then 
 						# echo "tiled directory70"
 						band70="$tiledirectory"
 					fi
@@ -173,7 +174,7 @@ for directory in ${Directories[@]}; do
 								# echo "file exists and it is combined *" 
 								echo "directory $i processing" 
 								convert -channel RGB "${bands[0]}/$i/$r/$c.png" "${bands[1]}/$i/$r/$c.png" "${bands[2]}/$i/$r/$c.png" -set colorspace RGB -combine -set colorspace sRGB -transparent black "c.png"
-								convert c.png "$DestinationDirectory/$i/$r/$c.png" -composite "$DestinationDirectory/$i/$r/$c.png" 
+								convert  "$DestinationDirectory/$i/$r/$c.png" c.png -composite "$DestinationDirectory/$i/$r/$c.png" 
 								# rm "c.png"
 
 						 	else 	#else copy file to directory

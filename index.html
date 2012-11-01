@@ -26,7 +26,7 @@
                                             // create OSM tile layer with correct attribution
                                             var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
                                             var osmAttrib='Map data Â© OpenStreetMap contributors';
-                                            var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 32, attribution: osmAttrib});
+                                            var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 32, attribution: osmAttrib});
 
                                             // start the map in specified location
                                             map.setView(new L.LatLng(-6.75669240286, 106.14514625),9);
@@ -77,30 +77,32 @@
                                             //create an object that holds the base layers
 
                                             var baselayers= {
-                                                "Open Street Maps": osm
-                                        
-                                                ,"True Color": layer321
-
-                                        
-                                                ,"Vegetation": layer432
-
-                                        
-                                                ,"Soil": layer453
-
-                                        
-                                                ,"Urban": layer543
-
-                                        
-                                                ,"Water": layer754
-
-                                        
+                                                // "Open Street Maps": osm,
+                                                "True Color": layer321,
+                                                "Vegetation": layer432,
+                                                "Soil": layer453,
+                                                "Urban": layer543,
+                                                "Water": layer754
+                                            };
+                                           var overlays = {
+                                                "map": osm
                                             };
     
-                                            var layersControl = new L.Control.Layers(baselayers);
+                                            var layersControl = new L.Control.Layers(   overlays, baselayers);
                                             map.addControl(layersControl);
 
                                         
                                             }
+                                           
+                                          
+                                            // var popup = L.popup();
+                                            // function onMapClick(e) {
+                                            // popup
+                                            // .setLatLng(e.latlng)
+                                            // .setContent("You clicked the map at " + e.latlng.toString())
+                                            // .openOn(map);
+                                            // }
+                                            // map.on('click', onMapClick);
                                         
                                         </script>
                                 </head>
